@@ -30,7 +30,7 @@ class UserOwnedObject (Resource):
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
         if user:
-            i=ObjectModel.find_by_id(obect_id)
+            i=ObjectModel.find_by_id(object_id)
             if i:
                 if i.owner_id != user.id:
                     return "non hai accesso a questo elemento", 407
