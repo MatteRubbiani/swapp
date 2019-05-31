@@ -26,13 +26,12 @@ class UserOwnedObjectsList(Resource):
 class UserOwnedObject (Resource):
     @jwt_required
     def get(self):
-        name=request.args.get('object_name')
-        id=request.args.get('object_id')
+        object_id=request.args.get('object_id')
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
         if user:
+            i=ObjectModel.find_by_id(obect_id)
             if i:
-                i=ObjectModel.find_by_id(id)
                 if i.owner_id != user.id:
                     return "non hai accesso a questo elemento", 407
                 object={"name":i.name,
