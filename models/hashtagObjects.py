@@ -24,6 +24,16 @@ class HashtagObjects(db.Model):
             b.append(i.hashtag_id)
         return b
 
+    @classmethod
+    def find_name_by_object_id(cls, object_id):
+        b=[]
+        a= HashtagObjects.query.filter_by(object_id=object_id)
+        for i in a:
+            b.append(i.name)
+        return b
+
+
+
 
     @classmethod
     def find_by_name(cls, name):
