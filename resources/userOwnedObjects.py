@@ -4,6 +4,8 @@ from models.users import UserModel
 from models.objects import ObjectModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.hashtagObjects import HashtagObjects
+from models.allHashtags import AllHashtags
+
 
 class UserOwnedObjectsList(Resource):
     @jwt_required
@@ -35,7 +37,13 @@ class UserOwnedObject (Resource):
             if i:
                 if i.owner_id != user.id:
                     return "non hai accesso a questo elemento", 407
-                hashtags=HashtagObjects.find_name_by_object_id(object_id)
+                hashtot=[]
+                hashtags=HashtagObjects.find_by_object_id(object_id)
+                for i in hashtags:
+                    k=AllHashtags.find_by_id(i)
+                    hashtot.append("hashtag_id"=i.id,
+                                   "hashtag_name"=i.name,
+                                   "total_times_used"=i.total_times_used)
                 object={"name":i.name,
                         "description":i.description,
                         "value":i.object_value,
@@ -46,7 +54,7 @@ class UserOwnedObject (Resource):
                         "is_away":i.is_away,
                         "keeper":"TODO",
                         "id":i.id,
-                        "hashtags":hashtags
+                        "hashtags":hashtot
                         }
                 return object, 200
             return "object does not exist", 402
