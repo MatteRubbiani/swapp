@@ -27,7 +27,7 @@ class HashtagsPairs(db.Model):
         if pair:
             pair.count=pair.count+1
         else:
-            pair=HashtagsPairs(hashatag_id_1, hashtag_id_2)
+            pair=HashtagsPairs(hashtag_id_1, hashtag_id_2)
         pair.save_to_db()
 
     @classmethod
