@@ -23,7 +23,7 @@ class HashtagsPairs(db.Model):
         return HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
-        pair=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
+        pair=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1).filter_by(hashtag_id_2=hashtag_id_2).first()
         if pair:
             pair.count=pair.count+1
         else:

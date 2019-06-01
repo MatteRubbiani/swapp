@@ -47,3 +47,4 @@ class AddHashtag(Resource):
                     b=hashtag.id
                     a=i
                 hashtagsPairs.add_or_create_pair(a, b)
+            return "hashtag added successfully", 200
