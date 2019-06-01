@@ -41,9 +41,9 @@ class UserOwnedObject (Resource):
                 hashtags=HashtagObjects.find_by_object_id(object_id)
                 for i in hashtags:
                     k=AllHashtags.find_by_id(i)
-                    hashtot.append("hashtagId"=i.id,
-                                   "hashtag_name"=i.name,
-                                   "total_times_used"=i.total_times_used)
+                    hashtot.append({"hashtag_id":i.id,
+                                   "hashtag_name":i.name,
+                                   "total_times_used":i.total_times_used})
                 object={"name":i.name,
                         "description":i.description,
                         "value":i.object_value,
