@@ -39,8 +39,8 @@ class UserOwnedObject (Resource):
                     return "non hai accesso a questo elemento", 407
                 hashtot=[]
                 hashtags=HashtagObjects.find_by_object_id(object_id)
-                for i in hashtags:
-                    k=AllHashtags.find_by_id(i)
+                for l in hashtags:
+                    k=AllHashtags.find_by_id(l)
                     hashtot.append({"hashtag_id":k.id,
                                    "hashtag_name":k.name,
                                    "total_times_used":k.total_times_used})
