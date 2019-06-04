@@ -16,7 +16,7 @@ class ObjectWithSim():
 
     def __init__(self, hashtag_name, object):
         self.object_id=object
-        seq = difflib.SequenceMatcher(None,object.name, hashtag_name)
+        seq = difflib.SequenceMatcher(None, object.name, hashtag_name)
         d = seq.ratio()*100
         self.simily=d
 
@@ -59,13 +59,14 @@ class SearchByName(Resource):
         b=[]
         for a in all:
             b.append(ObjectWithSim(name, a))
-        b.sort(key=lambda x: x.simily, reverse=True)
+        c = sorted(b, key=lambda x: x.simily, reverse=True)
         final=[]
         for l in b:
+            object=l.object
             final.append({
-                "name":l.object.name,
-                "description":l.object.description,
+                "name":object.name,
+                "description":object.description,
                 "posizione":"Modena",
-                "value":l.object.object_value
+                "value":object.object_value
 
             })
