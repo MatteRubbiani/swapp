@@ -14,7 +14,7 @@ class ObjectWithSim():
     object=None
     simily=0
 
-    def __init__(hashtag_name, object):
+    def __init__(self, hashtag_name, object):
         self.object_id=object
         seq = difflib.SequenceMatcher(None,object.name, hashtag_name)
         d = seq.ratio()*100
@@ -53,12 +53,12 @@ class SearchByName(Resource):
 
     @jwt_required
     def get(self):
-        hashtag_name=request.args.get('name')
+        name=request.args.get('name')
         max_distance=request.args.get('distance')
         all=ObjectModel.find_all()
         b=[]
         for a in all:
-            b.append(ObjectWithSim(hashtag_name, a))
+            b.append(ObjectWithSim(name, a))
         b.sort(key=lambda x: x.simily, reverse=True)
         final=[]
         for l in b:
