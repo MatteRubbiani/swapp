@@ -9,7 +9,8 @@ class CreateObject(Resource):
     def post (self):
         name=request.args.get('name')
         description=request.args.get('description')
-        object_value=request.args.get('object_value')        must_be_returned=request.args.get('must_be_returned')
+        object_value=request.args.get('object_value')
+        must_be_returned=request.args.get('must_be_returned')
         must_be_returned_date=request.args.get('must_be_returned_date')
         shipping_possible=request.args.get('shipping_possible')
         current_user=get_jwt_identity()
