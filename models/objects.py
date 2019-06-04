@@ -40,7 +40,7 @@ class ObjectModel(db.Model):
         j= ObjectModel.query.filter_by()
         a=[]
         for i in j:
-            a.append(i.id)
+            a.append(i)
         return a
 
     @classmethod

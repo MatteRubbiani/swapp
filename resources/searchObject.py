@@ -11,12 +11,12 @@ from models.hashtagsPairs import HashtagsPairs
 
 
 class ObjectWithSim():
-    object_id=0
+    object=None
     simily=0
 
-    def __init__(hashtag_name, object_id):
-        self.object_id=object_id
-        seq = difflib.SequenceMatcher(None,a,b)
+    def __init__(hashtag_name, object):
+        self.object_id=object
+        seq = difflib.SequenceMatcher(None,object.name, hashtag_name)
         d = seq.ratio()*100
         self.simily=d
 
@@ -60,4 +60,12 @@ class SearchByName(Resource):
         for a in all:
             b.append(ObjectWithSim(hashtag_name, a))
         b.sort(key=lambda x: x.simily, reverse=True)
-        return b
+        final=[]
+        for l in b:
+            final.append({
+                "name":l.object.name,
+                "description":l.object.description,
+                "posizione":"Modena",
+                "value":l.object.object_value
+
+            })
