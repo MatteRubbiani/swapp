@@ -15,7 +15,7 @@ class SearchByHashtag(Resource):
         hashtag_name=request.args.get('hashtag')
         max_distance=request.args.get('distance')
 
-        hashtag=allHashtags.find_by_name(hashtag_name)
+        hashtag=AllHashtags.find_by_name(hashtag_name)
         if hashtag is None:
             return []
         all=HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
