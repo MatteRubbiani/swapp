@@ -9,9 +9,7 @@ class CreateObject(Resource):
     def post (self):
         name=request.args.get('name')
         description=request.args.get('description')
-        object_value=request.args.get('object_value')
-        currency_id=request.args.get('currency_id')
-        must_be_returned=request.args.get('must_be_returned')
+        object_value=request.args.get('object_value')        must_be_returned=request.args.get('must_be_returned')
         must_be_returned_date=request.args.get('must_be_returned_date')
         shipping_possible=request.args.get('shipping_possible')
         current_user=get_jwt_identity()
@@ -19,7 +17,7 @@ class CreateObject(Resource):
         if user:
             currency_id=1
             shipping_possible=True
-            object=ObjectModel(name, description, user.id, object_value, currency_id, must_be_returned, must_be_returned_date, shipping_possible)
+            object=ObjectModel(name, description, user.id, object_value, None, must_be_returned, must_be_returned_date, shipping_possible)
             object.save_to_db()
             return "object created successfully", 200
         return "user does not exist", 401
@@ -31,7 +29,6 @@ class CreateObject(Resource):
         name=request.args.get('name')
         description=request.args.get('description')
         object_value=request.args.get('object_value')
-        currency_id=request.args.get('currency_id')
         must_be_returned=request.args.get('must_be_returned')
         must_be_returned_date=request.args.get('must_be_returned_date')
         shipping_possible=request.args.get('shipping_possible')
@@ -49,7 +46,6 @@ class CreateObject(Resource):
             a.name=name
             a.description= description
             a.object_value=object_value
-            a.currency_id=currency_id
             a.must_be_returned=bool(must_be_returned)
             a.must_be_returned_date=must_be_returned_date
             a.shipping_possible=bool(shipping_possible)

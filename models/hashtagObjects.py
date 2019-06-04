@@ -17,9 +17,17 @@ class HashtagObjects(db.Model):
         return HashtagObjects.query.filter_by(id=id).first()
 
     @classmethod
+    def find_objects_by_hashtag_id(cls, hashtag_id):
+        b=[]
+        a= HashtagObjects.query.filter_by(hashtag_id=hashtag_id)
+        for i in a:
+            b.append(i.object_id)
+        return b
+
+    @classmethod
     def find_by_object_id(cls, object_id):
         b=[]
-        a= HashtagObjects.query.filter_by(object_id=object_id)
+        a=HashtagObjects.query.filter_by(object_id=object_id)
         for i in a:
             b.append(i.hashtag_id)
         return b
