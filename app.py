@@ -15,6 +15,8 @@ from resources.userOwnedObjects import UserOwnedObjectsList, UserOwnedObject
 from resources.modifyUser import ModifyUser
 from resources.addHashtag import AddHashtag
 
+from resources.searchByHashtag import SearchByHashtag
+
 
 app= Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URL","sqlite:///data.db")
@@ -51,6 +53,7 @@ api.add_resource(GetMailUsername, "/user/details/mail_username")
 
 api.add_resource(CreateObject, "/object/create")
 api.add_resource(AddHashtag, "/object/hashtag/add")
+api.add_resource(SearchByHashtag, "/search/hashtag")
 
 
 api.add_resource(UserOwnedObjectsList, "/objects/owner/list")
