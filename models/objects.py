@@ -36,6 +36,14 @@ class ObjectModel(db.Model):
         return ObjectModel.query.filter_by(owner_id=user_id, name=object_name).first()
 
     @classmethod
+    def find_all(cls):
+        j= ObjectModel.query.filter_by()
+        a=[]
+        for i in j:
+            a.append(i.id)
+        return a
+
+    @classmethod
     def find_by_user_id(cls, user_id):
         array=[]
         a=ObjectModel.query.filter_by(owner_id=user_id)

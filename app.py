@@ -15,7 +15,7 @@ from resources.userOwnedObjects import UserOwnedObjectsList, UserOwnedObject
 from resources.modifyUser import ModifyUser
 from resources.addHashtag import AddHashtag
 
-from resources.searchByHashtag import SearchByHashtag
+from resources.searchObject import SearchByHashtag, SearchByName
 
 
 app= Flask(__name__)
@@ -54,6 +54,8 @@ api.add_resource(GetMailUsername, "/user/details/mail_username")
 api.add_resource(CreateObject, "/object/create")
 api.add_resource(AddHashtag, "/object/hashtag/add")
 api.add_resource(SearchByHashtag, "/search/hashtag")
+
+api.add_resource(SearchByName, "/search/name")
 
 
 api.add_resource(UserOwnedObjectsList, "/objects/owner/list")

@@ -1,5 +1,6 @@
 from flask_restful import Resource, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import difflib
 
 
 from models.users import UserModel
@@ -7,6 +8,18 @@ from models.objects import ObjectModel
 from models.hashtagObjects import HashtagObjects
 from models.allHashtags import AllHashtags
 from models.hashtagsPairs import HashtagsPairs
+
+
+class ObjectWithSim():
+    object_id=0
+    simily=0
+
+    def __init__(hashtag_name, object_id):
+        self.object_id=object_id
+        seq = difflib.SequenceMatcher(None,a,b)
+        d = seq.ratio()*100
+        self.simily=d
+
 
 class SearchByHashtag(Resource):
 
@@ -34,3 +47,17 @@ class SearchByHashtag(Resource):
 
             })
         return total
+
+
+class SearchByName(Resource):
+
+    @jwt_required
+    def get(self):
+        hashtag_name=request.args.get('name')
+        max_distance=request.args.get('distance')
+        all=ObjectModel.find_all()
+        b=[]
+        for a in all:
+            b.append(ObjectWithSim(hashtag_name, a))
+        b.sort(key=lambda x: x.simily, reverse=True)
+        return b
