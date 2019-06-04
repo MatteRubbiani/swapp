@@ -58,7 +58,8 @@ class SearchByName(Resource):
         all=ObjectModel.find_all()
         b=[]
         for a in all:
-            b.append(ObjectWithSim(name, a))
+            g=ObjectWithSim(name, a)
+            b.append(g)
         c = sorted(b, key=lambda x: x.simily, reverse=True)
         final=[]
         for l in b:
