@@ -1,8 +1,0 @@
-Flask
-Flask-RESTful
-Flask-JWT
-Flask-JWT_Extended
-Flask-SQLAlchemy
-uwsgi
-psycopg2
-datetime
