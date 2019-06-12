@@ -41,7 +41,6 @@ class SearchByHashtag(Resource):
                     break
                 object_points=0
                 for k in hashtags:
-                    return [k, hashtag.id]
                     hashtag_points=HashtagsPairs.find_pair(k, hashtag.id).count
                     object_points=object_points+hashtag_points
                 object_with_points= ObjectWithPoints(k, object_points)
