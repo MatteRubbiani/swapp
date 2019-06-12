@@ -46,6 +46,7 @@ class SearchByHashtag(Resource):
                 object_with_points= ObjectWithPoints(k, object_points)
                 possible_other_objects.append(object_with_points)
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
+        return d
         return total+d
 
 
