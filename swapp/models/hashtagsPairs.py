@@ -44,8 +44,7 @@ class HashtagsPairs(db.Model):
     def find_pair(cls, hashtag_id_1, hashtag_id_2):
         if hashtag_id_1<hashtag_id_2:
             return HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
-
-        return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_2, hashtag_id_1=hashtag_id_1).first()
+        return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_1, hashtag_id_1=hashtag_id_2).first()
 
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
