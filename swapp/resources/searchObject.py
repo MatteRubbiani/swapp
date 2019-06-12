@@ -32,8 +32,7 @@ class SearchByHashtag(Resource):
         possible_matches = HashtagsPairs.find_matching_hashtags(hashtag.id)
         possible_other_objects=[]
         for i in possible_matches:
-            return possible_matches
-            objs=HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
+            objs=HashtagObjects.find_objects_by_hashtag_id(i)
             for j in objs:
                 if j in possible_other_objects:
                     break
