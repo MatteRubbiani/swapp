@@ -19,8 +19,34 @@ class HashtagsPairs(db.Model):
         return HashtagsPairs.query.filter_by(id=id).first()
 
     @classmethod
+    def find_matching_hashtags(cls, hashtag_id):
+        a1=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1)
+        a2=HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_2)
+        o=[]
+        for i in a1:
+            o.append(i)
+        for j in a2:
+            o.append(j)
+        o1=sorted(o, key=lambda x: x.count, reverse=True)
+        o2=[]
+        for k in o1:
+            if k.hashtag_id_1==hashtag_id:
+                h_id=k.hashtag_id_2
+            else:
+                h_id=k.hashtag_id_1
+            o2.append(h_id)
+        return o2
+
+
+
+
+    @classmethod
     def find_pair(cls, hashtag_id_1, hashtag_id_2):
-        return HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
+        if hashtag_id_1<hashtag_id_2:
+            return HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
+
+        return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_2, hashtag_id_1=hashtag_id_1).first()
+
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
         pair=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1).filter_by(hashtag_id_2=hashtag_id_2).first()

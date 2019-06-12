@@ -53,8 +53,8 @@ api.add_resource(GetMailUsername, "/user/details/mail_username")
 
 api.add_resource(CreateObject, "/object/create")
 api.add_resource(AddHashtag, "/object/hashtag/add")
-api.add_resource(SearchByHashtag, "/search/hashtag")
 
+api.add_resource(SearchByHashtag, "/search/hashtag")
 api.add_resource(SearchByName, "/search/name")
 
 
