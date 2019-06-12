@@ -20,8 +20,8 @@ class HashtagsPairs(db.Model):
 
     @classmethod
     def find_matching_hashtags(cls, hashtag_id):
-        a1=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1)
-        a2=HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_2)
+        a1=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id)
+        a2=HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id)
         o=[]
         for i in a1:
             o.append(i)
