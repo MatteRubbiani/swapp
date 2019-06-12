@@ -42,10 +42,10 @@ class HashtagsPairs(db.Model):
 
     @classmethod
     def find_pair(cls, hashtag_id_1, hashtag_id_2):
-        if hashtag_id_1<hashtag_id_2:
-            return HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
-        return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_1, hashtag_id_1=hashtag_id_2).first()
-
+        a=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
+        if a is None:
+            return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_1, hashtag_id_1=hashtag_id_2).first()
+        return a
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
         pair=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1).filter_by(hashtag_id_2=hashtag_id_2).first()
