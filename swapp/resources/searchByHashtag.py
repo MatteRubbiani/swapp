@@ -44,9 +44,6 @@ class SearchByHashtag(Resource):
         return total+d
 
 
-
-
-        return total
 class ObjectWithPoints():
     object_id=0
     points=0
