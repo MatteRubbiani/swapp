@@ -14,8 +14,9 @@ class ObjectModel(db.Model):
     must_be_returned_date =db.Column(db.Integer)
     shipping_possible=db.Column(db.Boolean)
     is_away=db.Column(db.Boolean)
+    is_borrowable=db.Column(db.Boolean)
 
-    def __init__(self, name, description, owner_id, object_value, currency_id, must_be_returned, must_be_returned_date, shipping_possible):
+    def __init__(self, name, description, owner_id, object_value, currency_id, must_be_returned, must_be_returned_date, shipping_possible, is_borrowable):
         self.name = name
         self.description= description
         self.owner_id=owner_id
@@ -25,6 +26,7 @@ class ObjectModel(db.Model):
         self.must_be_returned_date=must_be_returned_date
         self.shipping_possible=bool(shipping_possible)
         self.is_away=False
+        self.is_borrowable=bool(is_borrowable)
 
 
     @classmethod

@@ -37,9 +37,6 @@ class HashtagsPairs(db.Model):
             o2.append(h_id)
         return o2
 
-
-
-
     @classmethod
     def find_pair(cls, hashtag_id_1, hashtag_id_2):
         a=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()

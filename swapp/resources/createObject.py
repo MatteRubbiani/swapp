@@ -13,12 +13,14 @@ class CreateObject(Resource):
         must_be_returned=request.args.get('must_be_returned')
         must_be_returned_date=request.args.get('must_be_returned_date')
         shipping_possible=request.args.get('shipping_possible')
+        is_borrowable=request.args.get('is_borrowable')
+
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
         if user:
             currency_id=1
             shipping_possible=True
-            object=ObjectModel(name, description, user.id, object_value, None, must_be_returned, must_be_returned_date, shipping_possible)
+            object=ObjectModel(name, description, user.id, object_value, None, must_be_returned, must_be_returned_date, shipping_possible, is_borrowable)
             object.save_to_db()
             return "object created successfully", 200
         return "user does not exist", 401
@@ -33,6 +35,7 @@ class CreateObject(Resource):
         must_be_returned=request.args.get('must_be_returned')
         must_be_returned_date=request.args.get('must_be_returned_date')
         shipping_possible=request.args.get('shipping_possible')
+        is_borrowable=request.args.get('is_borrowable')
 
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
@@ -50,6 +53,7 @@ class CreateObject(Resource):
             a.must_be_returned=bool(must_be_returned)
             a.must_be_returned_date=must_be_returned_date
             a.shipping_possible=bool(shipping_possible)
+            a.is_borrowable=bool(is_borrowable)
             a.save_to_db()
 
             return "ok", 200

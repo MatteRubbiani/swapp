@@ -39,18 +39,23 @@ class SearchByHashtag(Resource):
                 hashtags=HashtagObjects.find_by_object_id(j)
                 if hashtag.id in hashtags:
                     break
-                return hashtags+[hashtag.id]
                 object_points=0
                 for k in hashtags:
-                    hashtag_points=HashtagsPairs.find_pair(k, hashtag.id).count
-                    object_points=object_points+hashtag_points
+                    a=HashtagsPairs.find_pair(k, hashtag.id)
+                    if is None:
+                        return "c'e' un problema", 409
+                    object_points=object_points+a.count
                 object_with_points= ObjectWithPoints(k, object_points)
                 possible_other_objects.append(object_with_points)
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
-        return d+"hello"
-        return total+d
-
-
+        real_objects=[]
+        for l in d:
+            objl=ObjectModel.find_by_id(a)
+            real_objects.append({'name': l.name,
+               'description': l.description,
+               'posizione': 'Modena',
+               'value': l.object_value})
+        return total+real_objects
 
 
 class SearchByName(Resource):
@@ -82,10 +87,11 @@ class ObjectWithSim():
     simily=0
 
     def __init__(self, hashtag_name, object):
-        self.object_id=object
+        self.object=object
         seq = difflib.SequenceMatcher(None, object.name, hashtag_name)
         d = seq.ratio()*100
         self.simily=d
+
 
 class ObjectWithPoints():
     object_id=0
