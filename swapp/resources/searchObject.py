@@ -43,7 +43,7 @@ class SearchByHashtag(Resource):
                 for k in hashtags:
                     a=HashtagsPairs.find_pair(k, hashtag.id)
                     if a is None:
-                        return "c'e' un problema", 409
+                        a=HashtagsPairs.find_pair( hashtag.id, k)
                     object_points=object_points+a.count
                 object_with_points= ObjectWithPoints(k, object_points)
                 possible_other_objects.append(object_with_points)
