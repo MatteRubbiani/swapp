@@ -27,6 +27,7 @@ class CreateObject(Resource):
             object.save_to_db()
             hashtags_array= hashtags.split(",")
             for i in hashtags_array:
+                return i
                 add_hashtag(user, object.id, i)
             return object.id
             return "object created successfully", 200
