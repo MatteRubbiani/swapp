@@ -72,8 +72,12 @@ class SearchByName(Resource):
         b=[]
         for a in all:
             if a.name :
-                g=ObjectWithSim(name, a)
-                b.append(g)
+                seq = difflib.SequenceMatcher(None, a.name, name)
+                d = seq.ratio()*100
+                b.append({
+                "object":a,
+                "simily":d
+                })
         c = sorted(b, key=lambda x: x.simily, reverse=True)
         final=[]
         for l in b:
