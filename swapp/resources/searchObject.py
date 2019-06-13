@@ -42,7 +42,7 @@ class SearchByHashtag(Resource):
                 object_points=0
                 for k in hashtags:
                     a=HashtagsPairs.find_pair(k, hashtag.id)
-                    if is None:
+                    if a is None:
                         return "c'e' un problema", 409
                     object_points=object_points+a.count
                 object_with_points= ObjectWithPoints(k, object_points)
@@ -88,6 +88,7 @@ class ObjectWithSim():
 
     def __init__(self, hashtag_name, object):
         self.object=object
+        #metti tutto in minuscolo prima di confrontare che senno non funziona tanto bene
         seq = difflib.SequenceMatcher(None, object.name, hashtag_name)
         d = seq.ratio()*100
         self.simily=d
