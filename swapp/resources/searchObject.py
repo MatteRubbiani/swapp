@@ -71,7 +71,7 @@ class SearchByName(Resource):
         all=ObjectModel.find_all()
         b=[]
         for a in all:
-            if a.name :
+            if a.name:
                 seq = difflib.SequenceMatcher(None, a.name, name)
                 d = seq.ratio()*100
                 return d
@@ -81,7 +81,7 @@ class SearchByName(Resource):
                 })
         c = sorted(b, key=lambda x: x["simily"], reverse=True)
         final=[]
-        for l in b:
+        for l in c:
             object=l["object"]
             final.append({
                 "name":object.name,
