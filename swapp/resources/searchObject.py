@@ -31,11 +31,11 @@ class SearchByHashtag(Resource):
 
         hashtag = AllHashtags.find_by_name(hashtag_name)
         if hashtag is None:
-            return {"name": "HASHTAG INESISTENTE",
+            return [{"name": "HASHTAG INESISTENTE",
             "description":"",
             "posizione":"mmm",
             "value":0
-            }
+            }]
 
         all = HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
         #metti in ordine di posizione prima di iterare
