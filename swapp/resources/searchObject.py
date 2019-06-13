@@ -30,7 +30,6 @@ class SearchByHashtag(Resource):
                'posizione': 'Modena',
                'value': l.object_value})
         possible_matches = HashtagsPairs.find_matching_hashtags(hashtag.id)
-        return possible_matches
         possible_other_objects=[]
         for i in possible_matches:
             objs=HashtagObjects.find_objects_by_hashtag_id(i)
@@ -48,6 +47,7 @@ class SearchByHashtag(Resource):
                     if a is None:
                         continue
                     object_points=object_points+a.count
+
                 object_with_points= ObjectWithPoints(k, object_points)
                 possible_other_objects.append(object_with_points)
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
@@ -58,7 +58,7 @@ class SearchByHashtag(Resource):
                'description': objl.description,
                'posizione': 'Modena',
                'value': objl.object_value})
-        return total+real_objects
+        return total #+real_objects
 
 
 class SearchByName(Resource):
