@@ -43,13 +43,14 @@ class SearchByHashtag(Resource):
                 for k in hashtags:
                     a=HashtagsPairs.find_pair(k, hashtag.id)
                     if a is None:
-                        a=HashtagsPairs.find_pair( hashtag.id, k)
+                        a=HashtagsPairs.find_pair(hashtag.id, k)
                     if a is None:
                         continue
                     object_points=object_points+a.count
 
-                object_with_points= ObjectWithPoints(k, object_points)
+                object_with_points= ObjectWithPoints(j, object_points)
                 possible_other_objects.append(object_with_points)
+
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
         real_objects=[]
         for l in d:
