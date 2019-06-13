@@ -58,7 +58,7 @@ class SearchByHashtag(Resource):
                'description': objl.description,
                'posizione': 'Modena',
                'value': objl.object_value})
-        return total #+real_objects
+        return total+real_objects
 
 
 class SearchByName(Resource):
