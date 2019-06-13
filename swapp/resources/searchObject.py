@@ -18,10 +18,18 @@ class SearchByHashtag(Resource):
         hashtag_name = request.args.get('hashtag')
         max_distance = request.args.get('distance')
         hashtag = AllHashtags.find_by_name(hashtag_name)
-        if hashtag is None:
-            return []
-        all = HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
         total = []
+
+        if hashtag is None:
+            all=ObjectModel.find_all()
+            for a in all:
+                total.append({'name': l.name,
+                   'description': l.description,
+                   'posizione': 'Modena',
+                   'value': l.object_value})
+            return total
+
+        all = HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
         #metti in ordine di posizione prima di iterare
         for a in all:
             l = ObjectModel.find_by_id(a)
