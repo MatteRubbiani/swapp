@@ -6,7 +6,6 @@ from models.hashtagObjects import HashtagObjects
 from models.allHashtags import AllHashtags
 from models.hashtagsPairs import HashtagsPairs
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from resources.addHashtag import AddHashtag
 class CreateObject(Resource):
     @jwt_required
     def post (self):
@@ -29,6 +28,7 @@ class CreateObject(Resource):
             hashtags_array= hashtags.split(",")
             for i in hashtags_array:
                 add_hashtag(user, object.id, i)
+            return object.id
             return "object created successfully", 200
         return "user does not exist", 401
 
