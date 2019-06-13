@@ -22,7 +22,7 @@ class SearchByHashtag(Resource):
 
         if hashtag is None:
             all=ObjectModel.find_all()
-            for a in all:
+            for l in all:
                 total.append({'name': l.name,
                    'description': l.description,
                    'posizione': 'Modena',
