@@ -30,6 +30,7 @@ class SearchByHashtag(Resource):
                'posizione': 'Modena',
                'value': l.object_value})
         possible_matches = HashtagsPairs.find_matching_hashtags(hashtag.id)
+        return possible_matches
         possible_other_objects=[]
         for i in possible_matches:
             objs=HashtagObjects.find_objects_by_hashtag_id(i)
