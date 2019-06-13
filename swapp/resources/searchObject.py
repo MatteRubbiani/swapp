@@ -52,11 +52,11 @@ class SearchByHashtag(Resource):
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
         real_objects=[]
         for l in d:
-            objl=ObjectModel.find_by_id(a)
-            real_objects.append({'name': l.name,
-               'description': l.description,
+            objl=ObjectModel.find_by_id(l.object_id)
+            real_objects.append({'name': objl.name,
+               'description': objl.description,
                'posizione': 'Modena',
-               'value': l.object_value})
+               'value': objl.object_value})
         return total+real_objects
 
 
