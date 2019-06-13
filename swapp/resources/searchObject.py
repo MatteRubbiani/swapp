@@ -44,6 +44,8 @@ class SearchByHashtag(Resource):
                     a=HashtagsPairs.find_pair(k, hashtag.id)
                     if a is None:
                         a=HashtagsPairs.find_pair( hashtag.id, k)
+                    if a is None:
+                        continue
                     object_points=object_points+a.count
                 object_with_points= ObjectWithPoints(k, object_points)
                 possible_other_objects.append(object_with_points)
