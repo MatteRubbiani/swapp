@@ -31,7 +31,7 @@ class UserModel(db.Model):
         self.password=password
         self.confirmed=False
         self.password_change_date=time.time()
-        self.creation_date=self.password_change
+        self.creation_date=self.password_change_date
 
     @classmethod
     def find_by_id(cls, id):
