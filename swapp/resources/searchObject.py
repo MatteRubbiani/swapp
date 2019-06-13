@@ -78,10 +78,10 @@ class SearchByName(Resource):
                 "object":a,
                 "simily":d
                 })
-        c = sorted(b, key=lambda x: x.simily, reverse=True)
+        c = sorted(b, key=lambda x: x["simily"], reverse=True)
         final=[]
         for l in b:
-            object=l.object
+            object=l["object"]
             final.append({
                 "name":object.name,
                 "description":object.description,
