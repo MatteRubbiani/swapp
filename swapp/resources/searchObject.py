@@ -85,6 +85,7 @@ class SearchByName(Resource):
                 "value":object.object_value
 
             })
+        return final
 
 
 class ObjectWithSim():
