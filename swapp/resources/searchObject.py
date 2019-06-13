@@ -74,6 +74,7 @@ class SearchByName(Resource):
             if a.name :
                 seq = difflib.SequenceMatcher(None, a.name, name)
                 d = seq.ratio()*100
+                return d
                 b.append({
                 "object":a,
                 "simily":d
