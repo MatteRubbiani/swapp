@@ -19,8 +19,7 @@ class SearchByHashtag(Resource):
         max_distance = request.args.get('distance')
         hashtag = AllHashtags.find_by_name(hashtag_name)
         total = []
-        return hashtag_name
-        if hashtag_name is None:
+        if hashtag_name == "":
             all=ObjectModel.find_all()
             for l in all:
                 total.append({'name': l.name,
