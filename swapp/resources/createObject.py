@@ -6,6 +6,8 @@ from models.hashtagObjects import HashtagObjects
 from models.allHashtags import AllHashtags
 from models.hashtagsPairs import HashtagsPairs
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from models.objectCosts import ObjectCostsModel
+
 class CreateObject(Resource):
 
     @jwt_required
@@ -18,6 +20,12 @@ class CreateObject(Resource):
         shipping_possible=request.args.get('shipping_possible')
         is_borrowable=request.args.get('is_borrowable')
         hashtags=request.args.get('hashtags')
+
+
+        rental_period_id=request.args.get('rental_period_id')
+        rental_cost=request.args.get('rental_cost')
+
+
 
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
@@ -32,6 +40,12 @@ class CreateObject(Resource):
                 hashtags_array=[]
             for i in hashtags_array:
                 add_hashtag(user, object.id, i.strip())
+
+            rental_currency_id=1 #bla bla metti a posto
+
+            costs=ObjectCostsModel(object.id, rental_period_id, rental_cost, rental_currency_id)
+            costs.save_to_db()
+
 
             return "object created successfully", 200
         return "user does not exist", 401
