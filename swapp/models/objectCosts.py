@@ -11,10 +11,10 @@ class ObjectCostsModel(db.Model):
     rental_currency_id= db.Column(db.Integer)
 
     def __init__(self, object_id, rental_period_id, rental_cost, rental_currency_id):
-        self.object_id=object_id
-        self.rental_period_id=rental_period_id
-        self.rental_cost=rental_cost
-        self.rental_currency_id=rental_currency_id
+        self.object_id=int(object_id)
+        self.rental_period_id=int(rental_period_id)
+        self.rental_cost=int(rental_cost)
+        self.rental_currency_id=int(rental_currency_id)
 
 
     @classmethod
