@@ -15,6 +15,8 @@ from resources.userOwnedObjects import UserOwnedObjectsList, UserOwnedObject
 from resources.modifyUser import ModifyUser
 from resources.addHashtag import AddHashtag
 
+from resources.checkPairs import CheckPairs
+
 from resources.searchObject import SearchByHashtag, SearchByName
 
 
@@ -60,6 +62,8 @@ api.add_resource(SearchByName, "/search/name")
 
 api.add_resource(UserOwnedObjectsList, "/objects/owner/list")
 api.add_resource(UserOwnedObject, "/object/owner")
+
+api.add_resource(CheckPairs, "/check/pairs")
 
 
 if __name__=="__main__":

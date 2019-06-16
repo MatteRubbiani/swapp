@@ -66,8 +66,12 @@ class HashtagsPairs(db.Model):
         pair.save_to_db()
 
     @classmethod
-    def find_by_name(cls, name):
-        return HashtagsPairs.query.filter_by(name=name).first()
+    def get_all(cls):
+        b=HashtagsPairs.query.filter_by()
+        a=[]
+        for i in b:
+            a.append(i)
+        return a
 
     def delete_from_db(self):
         db.session.delete(self)
