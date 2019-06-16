@@ -72,7 +72,7 @@ class SearchByHashtag(Resource):
             objl=ObjectModel.find_by_id(l.object_id)
             real_objects.append({'name': objl.name,
                'description': objl.description,
-               'posizione': 'Modena',
+               'location': 'Modena',
                'value': objl.object_value})
         return total+real_objects
 
@@ -100,7 +100,7 @@ class SearchByName(Resource):
             final.append({
                 "name":object.name,
                 "description":object.description,
-                "posizione":"Modena",
+                "location":"Modena",
                 "value":object.object_value
 
             })
