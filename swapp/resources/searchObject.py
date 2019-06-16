@@ -49,11 +49,9 @@ class SearchByHashtag(Resource):
         for i in possible_matches:
             objs=HashtagObjects.find_objects_by_hashtag_id(i)
             for j in objs:
-                if j in possible_other_objects:
-                    break
                 hashtags=HashtagObjects.find_by_object_id(j)
                 if hashtag.id in hashtags:
-                    break
+                    continue
                 object_points=0
                 for k in hashtags:
                     a=HashtagsPairs.find_pair(k, hashtag.id)
@@ -64,6 +62,8 @@ class SearchByHashtag(Resource):
                     object_points=object_points+a.count
 
                 object_with_points= ObjectWithPoints(j, object_points)
+                if object_with_points in possible_other_objects:
+                    break
                 possible_other_objects.append(object_with_points)
 
         d=sorted(possible_other_objects, key=lambda x: x.points, reverse=True)
