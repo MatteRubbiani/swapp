@@ -42,7 +42,10 @@ class CreateObject(Resource):
             except:
                 hashtags_array=[]
             for i in hashtags_array:
-                add_hashtag(user, object.id, i.strip())
+                if i == "":
+                    continue
+
+                add_hashtag(user, object.id, i.strip().replace("+", ""))
 
             rental_currency_id=1 #bla bla metti a posto
 
