@@ -42,7 +42,7 @@ class UserModel(db.Model):
         return UserModel.query.filter_by(mail=mail).first()
 
     def has_completed_account(self):
-        if self.telephone_number and self.country_id and self.address and self.city and self.zip_code:
+        if self.telephone_number and self.country_id and self.address and self.city: #and self.zip_code:
             return True
         return False
 
