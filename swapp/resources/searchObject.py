@@ -43,9 +43,10 @@ class SearchByHashtag(Resource):
         all = HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
         #metti in ordine di posizione prima di iterare
         for a in all:
+            l = ObjectModel.find_by_id(a)
             user=UserModel.find_by_id(l.owner_id)
             #devi trovare la posizione dell'oggetto... per il momento (16/06/19), non si possono ancora fare gli scambi quindi metto la posizione dell'utente
-            l = ObjectModel.find_by_id(a)
+            
             total.append({'name': l.name,
                'description': l.description,
                'posizione': user.city,
