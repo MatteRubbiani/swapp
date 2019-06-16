@@ -12,7 +12,7 @@ class CheckPairs(Resource):
 
 
     def get (self):
-        a=hashtagsPairs.get_all()
+        a=HashtagsPairs.get_all()
         b=[]
         for i in a:
             b.append(i.__dict__)
