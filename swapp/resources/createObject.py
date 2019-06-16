@@ -30,6 +30,9 @@ class CreateObject(Resource):
         current_user=get_jwt_identity()
         user=UserModel.find_by_id(current_user)
         if user:
+            #we must check if the user has completed his account setup
+            if not user.has_completed_account():
+                return "you must complete account setup", 444
             currency_id=1
             shipping_possible=True
             object=ObjectModel(name, description, user.id, object_value, None, must_be_returned, must_be_returned_date, shipping_possible, is_borrowable)
