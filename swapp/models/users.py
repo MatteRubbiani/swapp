@@ -41,6 +41,13 @@ class UserModel(db.Model):
     def find_by_mail(cls, mail):
         return UserModel.query.filter_by(mail=mail).first()
 
+    def has_completed_account(self):
+        if self.
+        id = db.Column(db.Integer, primary_key=True)
+        if self.telephone_number and self.country_id and self.address and self.city and self.zip_code:
+            return True
+        return False
+
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
