@@ -15,9 +15,11 @@ class CheckPairs(Resource):
         a=HashtagsPairs.get_all()
         b=[]
         for i in a:
+            hashtag1=AllHashtags.find_by_id(i.hashtag_id_1)
+            hashtag2=AllHashtags.find_by_id(i.hashtag_id_2)
             b.append({
-            "1":i.hashtag_id_1,
-            "2":i.hashtag_id_2,
+            "1":hashtag1.name,
+            "2":hashtag2.name,
             "count":i.count
             })
         return b
