@@ -21,3 +21,7 @@ class CheckPairs(Resource):
             "count":i.count
             })
         return b
+
+    def post (self):
+        id=request.args.get('id')
+        return HashtagsPairs.find_matching_hashtags(id)
