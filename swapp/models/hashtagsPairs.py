@@ -30,11 +30,11 @@ class HashtagsPairs(db.Model):
         o1=sorted(o, key=lambda x: x.count, reverse=True)
         o2=[]
         for k in o1:
-            if k.hashtag_id_1==hashtag_id:
+            if k.hashtag_id_1==int(hashtag_id):
                 h_id=k.hashtag_id_2
             else:
                 h_id=k.hashtag_id_1
-            o2.append(h_id)
+            o2.append(int(h_id))
         return o2
 
     @classmethod
@@ -48,7 +48,7 @@ class HashtagsPairs(db.Model):
         a=HashtagsPairs.query.filter_by(hashtag_id_1=a,hashtag_id_2=b ).first()
         return a
 
-        
+
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
         if int(hashtag_id_1)>hashtag_id_2:
