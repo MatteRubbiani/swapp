@@ -22,10 +22,14 @@ class SearchByHashtag(Resource):
         if hashtag_name == "":
             all=ObjectModel.find_all()
             for l in all:
+                user=UserModel.find_by_id(l.owner_id)
+                #devi trovare la posizione dell'oggetto... per il momento (16/06/19), non si possono ancora fare gli scambi quindi metto la posizione dell'utente
+
                 total.append({'name': l.name,
                    'description': l.description,
-                   'posizione': 'Modena',
-                   'value': l.object_value})
+                   'posizione': user.city,
+                   'value': l.object_value,
+                   "id":l.id})
             return total
 
         hashtag = AllHashtags.find_by_name(hashtag_name)
@@ -39,11 +43,14 @@ class SearchByHashtag(Resource):
         all = HashtagObjects.find_objects_by_hashtag_id(hashtag.id)
         #metti in ordine di posizione prima di iterare
         for a in all:
+            user=UserModel.find_by_id(l.owner_id)
+            #devi trovare la posizione dell'oggetto... per il momento (16/06/19), non si possono ancora fare gli scambi quindi metto la posizione dell'utente
             l = ObjectModel.find_by_id(a)
             total.append({'name': l.name,
                'description': l.description,
-               'posizione': 'Modena',
-               'value': l.object_value})
+               'posizione': user.city,
+               'value': l.object_value,
+               "id":l.id})
         possible_matches = HashtagsPairs.find_matching_hashtags(hashtag.id)
         possible_other_objects=[]
         for i in possible_matches:
