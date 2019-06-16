@@ -39,10 +39,16 @@ class HashtagsPairs(db.Model):
 
     @classmethod
     def find_pair(cls, hashtag_id_1, hashtag_id_2):
-        a=HashtagsPairs.query.filter_by(hashtag_id_1=hashtag_id_1,hashtag_id_2=hashtag_id_2 ).first()
-        if a is None:
-            return HashtagsPairs.query.filter_by(hashtag_id_2=hashtag_id_1, hashtag_id_1=hashtag_id_2).first()
+        if int(hashtag_id_1)>hashtag_id_2:
+            a=hashtag_id_2
+            b=hashtag_id_1
+        else:
+            a=hashtag_id_1
+            b=hashtag_id_2
+        a=HashtagsPairs.query.filter_by(hashtag_id_1=a,hashtag_id_2=b ).first()
         return a
+
+        
     @classmethod
     def add_or_create_pair(cls, hashtag_id_1, hashtag_id_2):
         if int(hashtag_id_1)>hashtag_id_2:
