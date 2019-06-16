@@ -45,7 +45,7 @@ class CreateObject(Resource):
                 if i == "":
                     continue
 
-                add_hashtag(user, object.id, i.strip()#.replace("+", ""))
+                add_hashtag(user, object.id, i.strip())#.replace("+", ""))
 
             rental_currency_id=1 #bla bla metti a posto
 
