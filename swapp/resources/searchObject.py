@@ -45,13 +45,19 @@ class SearchByHashtag(Resource):
         for a in all:
             l = ObjectModel.find_by_id(a)
             user=UserModel.find_by_id(l.owner_id)
-            #devi trovare la posizione dell'oggetto... per il momento (16/06/19), non si possono ancora fare gli scambi quindi metto la posizione dell'utente
 
-            total.append({'name': l.name,
+            total.append(l)
+#per il momento li metto solo in ordine di creazione magari nel futuro anche per piu' scambiati o roba cosi'
+        total=sorted(total, key=lambda x: x.creation_date, reverse=True)
+        dict_total=[]
+        for l in total:
+#devi trovare la posizione dell'oggetto... per il momento (16/06/19), non si possono ancora fare gli scambi quindi metto la posizione dell'utente
+            dict_total.append({'name': l.name,
                'description': l.description,
                'posizione': user.city,
                'value': l.object_value,
                "id":l.id})
+
         possible_matches = HashtagsPairs.find_matching_hashtags(hashtag.id)
         possible_other_objects=[]
         for i in possible_matches:
