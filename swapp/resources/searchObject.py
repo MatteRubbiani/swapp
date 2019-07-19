@@ -98,6 +98,8 @@ class SearchByName(Resource):
         name=request.args.get('name')
         max_distance=request.args.get('distance')
         all=ObjectModel.find_all()
+        if name is None:
+            return list(reversed(all))
         b=[]
         for a in all:
             if a.name:
